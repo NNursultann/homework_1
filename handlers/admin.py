@@ -15,4 +15,5 @@ async def game_(msg: Message):
             await msg.answer('Пиши в группе!!')
 
 def register_handlers_admin(dp: Dispatcher):
-    dp.register_message_handler(game_)
+    dp.register_message_handler(game_,
+                                lambda word: 'game' in word.text)
