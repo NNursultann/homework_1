@@ -1,4 +1,4 @@
-from handlers import client, callback, extra,\
+from handlers import client, callback,\
      admin, fsm_anketa, notification
 from database.bot_db import sql_create
 from aiogram.utils import executor
