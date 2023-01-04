@@ -15,7 +15,7 @@ class FSMAdmin(StatesGroup):
 
 async def fsm_start(message: types.Message):
         if message.chat.type == 'private':
-            await FSMAdmin.id.set()#<- у меня из-за того не получаетсься сделать дз3 >:(
+            await FSMAdmin.id.set()
             await message.answer("Id ментора")
         else:
             await message.answer("Пиши в личке!")
@@ -58,7 +58,7 @@ async def load_group(message: types.Message, state: FSMContext):
 async def load_contact(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['contact'] = message.text
-    await FSMAdmin.next()
+    await state.finish()
 
 
 def register_handlers_fsm_anketa(dp: Dispatcher):

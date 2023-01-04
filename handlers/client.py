@@ -3,6 +3,7 @@ from aiogram.types import Message, InlineKeyboardButton,\
 from keyboards.client_kb import start_markup
 from aiogram import Dispatcher
 from config import bot
+from parser.wheels import ParserWheels
 import random
 
 async def start_bot(message: Message):
@@ -45,9 +46,20 @@ async def pin(msg: Message):
     if msg.reply_to_message:
         await bot.pin_chat_message(msg.chat.id, msg.message_id)
 
+async def get_wheels(message: Message):
+    wheels = ParserWheels.parser()
+    for i in wheels:
+        await message.answer(
+            f"{i['link']}\n",
+            f"#{i['size']}\n",
+            f"#{i['logo']}\n",
+            f"{i['price']}"
+        )
+
 
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(start_bot, commands=['start', 'help'])
     dp.register_message_handler(quiz_, commands=['quiz'])
     dp.register_message_handler(send_mem, commands=['mem'])
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!')
+    dp.register_message_handler(get_wheels, commands=['wheels'])
