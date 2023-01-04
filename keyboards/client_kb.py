@@ -7,5 +7,6 @@ start_markup = ReplyKeyboardMarkup(
 
 quiz_button = KeyboardButton('/quiz')
 mem_button = KeyboardButton('/mem')
+reg_button = KeyboardButton('/reg_mentors')
 
-start_markup.add(quiz_button, mem_button)
+start_markup.add(quiz_button, mem_button, reg_button)

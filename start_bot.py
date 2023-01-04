@@ -1,5 +1,6 @@
 from handlers import client, callback, extra,\
      admin, fsm_anketa, notification
+from database.bot_db import sql_create
 from aiogram.utils import executor
 from config import dp
 import asyncio
@@ -12,10 +13,10 @@ admin.register_handlers_admin(dp)
 fsm_anketa.register_handlers_fsm_anketa(dp)
 notification.register_handlers_notification(dp)
 
-extra.register_handler_extra(dp)
 
 async def on_starup(_):
     asyncio.create_task(notification.scheduler())
+    sql_create()
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
